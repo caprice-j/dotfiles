@@ -14,8 +14,8 @@
 (set-face-foreground 'font-lock-constant-face          "#FFBF7F") ; 定数(this, selfなども)
 (set-face-foreground 'font-lock-variable-name-face     "#7F7FFF") ; 変数
 (set-face-foreground 'font-lock-type-face              "#FFFF7F") ; クラス
-;(set-face-foreground 'fringe                           "#666666") ; fringe(折り返し記号なでが出る部分)
-;(set-face-background 'fringe                           "#282828") ; fringe
+(set-face-foreground 'fringe                           "#666666") ; fringe(折り返し記号なでが出る部分)
+(set-face-background 'fringe                           "#282828") ; fringe
 
 ;; load package-manager: el-get
 (when load-file-name
@@ -43,7 +43,7 @@
             'python-mode-hook))
   (add-hook hook 'hideshowvis-enable))
 
-;(el-get-bundle hideshow-fringe)
+(el-get-bundle hideshow-fringe)
 (el-get-bundle hideshow-org)
 
 
