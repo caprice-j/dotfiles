@@ -43,7 +43,7 @@
             'python-mode-hook))
   (add-hook hook 'hideshowvis-enable))
 
-(el-get-bundle hideshow-fringe)
+;(el-get-bundle hideshow-fringe)
 (el-get-bundle hideshow-org)
 
 
