@@ -48,6 +48,11 @@
 (setq indent-guide-recursive t)
 ;(setq indent-guide-char ":")
 
+
+; just for fun
+(el-get-bundle syohex/emacs-jazzradio)
+
+
 ; If Mac OS, use command key as meta key
 ;(when (eq system-type 'darwin)
 ;  (setq ns-command-modifier (quote meta));)
