@@ -13,6 +13,8 @@
     (eval-print-last-sexp)))
 
 ;  packages
+(el-get-bundle ess)
+
 (el-get-bundle auto-complete)
 
 (el-get-bundle syohex/emacs-git-gutter)
