@@ -1,4 +1,21 @@
-
+(set-foreground-color                                  "#CCCCCC") ; 文字色
+;(set-background-color                                  "#333333") ; 背景色
+(set-cursor-color                                      "#FF0000") ; カーソル色
+(set-face-background 'region                           "#222244") ; リージョン
+(set-face-foreground 'mode-line                         "#CCCCCC") ; モードライン文字
+(set-face-background 'mode-line                         "#333333") ; モードライン背景
+(set-face-foreground 'mode-line-inactive               "#333333") ; モードライン文字(非アクティブ)
+(set-face-background 'mode-line-inactive               "#CCCCCC") ; モードライン背景(非アクティブ)
+(set-face-foreground 'font-lock-comment-delimiter-face "#888888") ; コメントデリミタ
+(set-face-foreground 'font-lock-comment-face           "#888888") ; コメント
+(set-face-foreground 'font-lock-string-face            "#7FFF7F") ; 文字列
+(set-face-foreground 'font-lock-function-name-face     "#BF7FFF") ; 関数名
+(set-face-foreground 'font-lock-keyword-face           "#FF7F7F") ; キーワード
+(set-face-foreground 'font-lock-constant-face          "#FFBF7F") ; 定数(this, selfなども)
+(set-face-foreground 'font-lock-variable-name-face     "#7F7FFF") ; 変数
+(set-face-foreground 'font-lock-type-face              "#FFFF7F") ; クラス
+(set-face-foreground 'fringe                           "#666666") ; fringe(折り返し記号なでが出る部分)
+(set-face-background 'fringe                           "#282828") ; fringe
 
 ;; load package-manager: el-get
 (when load-file-name
@@ -13,7 +30,27 @@
     (eval-print-last-sexp)))
 
 ;  packages
+(el-get-bundle magnars/multiple-cursors.el)
+
+
+(load-library "hideshow")
+(el-get-bundle emacswiki:hideshowvis)
+(autoload 'hideshowvis-enable "hideshowvis" "Highlight foldable regions")
+(add-hook 'c++-mode-hook 'hs-minor-mode)
+
+(dolist (hook (list 'emacs-lisp-mode-hook
+                    'c++-mode-hook
+            'python-mode-hook))
+  (add-hook hook 'hideshowvis-enable))
+
+(el-get-bundle hideshow-fringe)
+(el-get-bundle hideshow-org)
+
+
 (el-get-bundle ess)
+(setq auto-mode-alist
+     (cons (cons "\\.r$" 'R-mode) auto-mode-alist))
+(autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
 
 (el-get-bundle auto-complete)
 
@@ -52,7 +89,7 @@
 
 
 ; just for fun
-(el-get-bundle syohex/emacs-jazzradio)
+;(el-get-bundle syohex/emacs-jazzradio)
 
 
 ; If Mac OS, use command key as meta key
@@ -74,28 +111,52 @@
 
  (global-hl-line-mode t)
  (custom-set-faces '(hl-line ((t (:background "black"))))) 
+;; highlight current line
+;(el-get-bundle jaspace)
+;; hilight paren
+(show-paren-mode 1)
+
+;; highlight reagion
+(setq transient-mark-mode t)
+
+;; highlight edit characters
+;(require 'jaspace)
+;(setq jaspace-highlight-tabs t)
+;(add-hook 'mmm-mode-hook 'jaspace-mmm-mode-hook)
 ;(setq hl-line-face 'underline) ; 下線
 
 ; get xterm-related mouse events
 (xterm-mouse-mode t)
 ;(mouse-wheel-mode t)
 
-(set-default-coding-systems 'utf-8)
 
+;; line number 
+(global-linum-mode)
+(setq linum-format "%d ")
 
 ;(set-scroll-bar-mode 'right)
 
-(setq backup-inhibited t)
+(setq scroll-step 1)
 
-(setq transient-mark-mode t)
+(setq backup-inhibited t)
 
 (setq tab-width 4)
 (setq-default indent-tabs-mode nil)
 
 ; error checker
-(add-hook 'c-mode-common-hook 'flycheck-mode)
+; (add-hook 'c-mode-common-hook 'flycheck-mode)
 
 (defalias 'exit 'save-buffers-kill-emacs)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.r\\'" . r-mode))
+
+
+
+(set-language-environment       "Japanese")
+(prefer-coding-system           'utf-8-unix)
+(set-default-coding-systems     'utf-8)
+(setq                           default-buffer-file-coding-system 'utf-8)
+(set-buffer-file-coding-system  'utf-8)
+(set-terminal-coding-system     'utf-8)
+(set-keyboard-coding-system     'utf-8)
+(set-clipboard-coding-system    'utf-8)
