@@ -5,6 +5,9 @@ TGT_TMUX_FILE=~/.tmux.conf
 
 DOTFILES=~/dotfiles
 
+
+# apt-get install exuberant-ctags
+
 # ~/.emacs and ~/.emacs.el take precedence over ~/.emacs.d/init.el
 rm -f  ~/.emacs
 rm -f  ~/.emacs.el

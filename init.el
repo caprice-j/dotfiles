@@ -1,7 +1,5 @@
 
 
-
-
 (set-foreground-color                                  "#CCCCCC") ; 文字色
 ;(set-background-color                                  "#333333") ; 背景色
 (set-cursor-color                                      "#FF0000") ; カーソル色
@@ -36,6 +34,14 @@
 ;  packages
 (el-get-bundle magnars/multiple-cursors.el)
 
+(el-get-bundle anzu)
+(global-anzu-mode +1)
+(custom-set-variables
+ '(anzu-mode-lighter "")
+ '(anzu-deactivate-region t)
+ '(anzu-search-threshold 1000)
+ '(anzu-replace-threshold 50)
+ '(anzu-replace-to-string-separator " => "))
 
 (load-library "hideshow")
 (el-get-bundle emacswiki:hideshowvis)
@@ -51,10 +57,14 @@
 (el-get-bundle hideshow-org)
 
 
+
+
 (el-get-bundle ess)
 (setq auto-mode-alist
      (cons (cons "\\.r$" 'R-mode) auto-mode-alist))
 (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
+
+(el-get-bundle helm-etags-plus)
 
 ;(el-get-bundle elpa:magit)
 ;(add-to-list 'load-path "~/.emacs.d/el-get/magit/lisp")
