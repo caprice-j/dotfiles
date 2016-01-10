@@ -1,3 +1,7 @@
+
+
+
+
 (set-foreground-color                                  "#CCCCCC") ; 文字色
 ;(set-background-color                                  "#333333") ; 背景色
 (set-cursor-color                                      "#FF0000") ; カーソル色
@@ -54,16 +58,26 @@
 
 (el-get-bundle auto-complete)
 
-(el-get-bundle syohex/emacs-git-gutter)
+;(el-get-bundle syohex/emacs-git-gutter)
+(el-get-bundle nschum/fringe-helper.el)
+(el-get-bundle syohex/emacs-git-gutter-fringe)
 (global-git-gutter-mode +1)
+;(global-linum-mode)
+;(setq git-gutter-fr:side 'right-fringe)
 (custom-set-variables
- '(git-gutter:window-width 3)
- '(git-gutter:modified-sign "  ") ;; two space
- '(git-gutter:added-sign "++")    ;; multiple character is OK
- '(git-gutter:deleted-sign "--"))
-(set-face-background 'git-gutter:modified "purple") ;; background color
-(set-face-foreground 'git-gutter:added "green")
-(set-face-foreground 'git-gutter:deleted "red")
+ '(git-gutter:window-width 2)
+ '(git-gutter:modified-sign "  ") ;; two spac
+ '(git-gutter:added-sign "+ ")    ;; multiple character is OK
+ '(git-gutter:deleted-sign "- "));
+;(set-face-foreground 'git-gutter:unchanged "yellow")
+;(set-face-background 'git-gutter:modified "purple") ;; background color;
+;(set-face-foreground 'git-gutter:added "green")
+;(set-face-foreground 'git-gutter:deleted "red")
+;; line number  ... does not work with git-gutter. use git-gutter-fringe
+
+;(setq linum-format "%d ")
+
+
 
 (el-get-bundle emacs-helm/helm)
 (helm-mode 1)
@@ -95,6 +109,9 @@
 ; If Mac OS, use command key as meta key
 ;(when (eq system-type 'darwin)
 ;  (setq ns-command-modifier (quote meta));)
+
+;(define-key global-map (kbd "C-v") 'scroll-up-command)
+;(define-key global-map (kbd "M-v") 'scroll-down-command)
 
 ; C-z を undo に、 susoend を C-t に変更
 (define-key global-map (kbd "C-z") 'undo)
@@ -130,9 +147,6 @@
 ;(mouse-wheel-mode t)
 
 
-;; line number 
-(global-linum-mode)
-(setq linum-format "%d ")
 
 ;(set-scroll-bar-mode 'right)
 
