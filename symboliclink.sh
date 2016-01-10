@@ -5,9 +5,10 @@ TGT_TMUX_FILE=~/.tmux.conf
 
 DOTFILES=~/dotfiles
 
+# ~/.emacs and ~/.emacs.el take precedence over ~/.emacs.d/init.el
 rm -f  ~/.emacs
 rm -f  ~/.emacs.el
-rm -f  ${TGT_EMACS_FILE}
-ln -s  ${DOTFILES}/init.el     ${TGT_EMACS_FILE}
-rm -f  ${TGT_TMUX_FILE}
-ln -s  ${DOTFILES}/tmux.conf   ${TGT_TMUX_FILE}
+ln -fs  ${DOTFILES}/init.el     ${TGT_EMACS_FILE}
+
+
+ln -fs  ${DOTFILES}/tmux.conf   ${TGT_TMUX_FILE}
