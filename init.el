@@ -56,6 +56,12 @@
      (cons (cons "\\.r$" 'R-mode) auto-mode-alist))
 (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
 
+;(el-get-bundle elpa:magit)
+;(add-to-list 'load-path "~/.emacs.d/el-get/magit/lisp")
+;(global-set-key (kbd "C-x g") 'magit-status)
+
+(el-get-bundle elpa:flycheck)
+
 (el-get-bundle auto-complete)
 
 ;(el-get-bundle syohex/emacs-git-gutter)
