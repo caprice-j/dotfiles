@@ -103,28 +103,76 @@
 
 ;(setq linum-format "%d ")
 
-
+;(el-get-bundle jwiegley/use-package)
+; stronger than (global-set-key).
+; I wanna use use-pacakge but does not work
+(keyboard-translate ?\C-h ?\C-?)
 
 (el-get-bundle emacs-helm/helm)
+
 (helm-mode 1)
 (define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action)
+;(define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-k")  'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-f")  'helm-find-files)
 
+; I prefer fuzzy match
+(setq helm-M-x-fuzzy-match t)
+(setq helm-buffers-fuzzy-matching t)
+
+
+(el-get-bundle helm-swoop)
+(global-set-key (kbd "M-s") 'helm-swoop)
+(global-set-key (kbd "M-S") 'helm-swoop-back-to-last-print)
+
+; move to helm-swoop in isearch (incremental search)
+(define-key isearch-mode-map (kbd "C-s") 'helm-swoop-from-isearch)
+
+;(define-key helm-swoop-map (kbd "C-h") 'delete-backward-char)
+; move to helm-multi-swoop-all in helm-swoop
+;(define-key helm-swoop-map (kbd "M-s") 'helm-multi-swoop-all-from-helm-swoop) ; does not work. why?
+
+;; save buffer when helm-multi-swoop-edit complete
+;(setq helm-multi-swoop-edit-save t)
+
+; t -> separate in the window, nil -> use other window
+(setq helm-swoop-split-with-multiple-windows t)
+
+; separation direction
+(setq helm-swoop-split-direction 'split-window-vertically)
+
+;; if nil, faster boot and less color
+(setq helm-swoop-speed-or-color nil)
+
+; FIXME: cound not find "avy"
+(el-get-bundle avy)
+(el-get-bundle ace-jump-mode)
+(el-get-bundle tam17aki/ace-isearch)
+(global-ace-isearch-mode +1)
+(setq ace-isearch-use-function-from-isearch nil)
+(define-key isearch-mode-map (kbd "M-m") 'helm-multi-swoop-all-from-isearch)
+
+; replace unusable buffer-switch
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
 ; MAYBE-LATER: installing rtags is hard
 (el-get-bundle rtags)
 (el-get-bundle jixiuf/helm-etags-plus)
+(setq rtags-use-helm t)
 (global-set-key (kbd "M-t") 'rtags-symbol-type)  ;  show type information on variables in minibuffer
 (global-set-key (kbd "M-i") 'rtags-symbol-info)  ;  show type information on variablse in a separate buffer
 (global-set-key (kbd "M-l") 'rtags-taglist)      ;  create a buffer of list all variables/functions 
 (global-set-key (kbd "M-d") 'rtags-print-dependencies) ; show all include files. powerful!
 (global-set-key (kbd "M-c") 'rtags-print-class-hierarchy) ; on subclass names?
 (global-set-key (kbd "M-b") 'rtags-find-symbol) ; back    ; go back to definition. 
-(global-set-key (kbd "M-r") 'rtags-references-tree)       ; show usage points
+;(global-set-key (kbd "M-r") 'rtags-references-tree)       ; show usage points
+(global-set-key (kbd "M-r") 'rtags-find-references)       ; show usage points
 (global-set-key [f12] 'eval-buffer)                       ; on buffer of init.el, reload
 (global-set-key [f11] 'describe-bindings)                 ; all key bindings
 
 (el-get-bundle syohex/emacs-helm-ag)
+(setq helm-ag-fuzzy-match t)
 
 ;(el-get-bundle emacsmirror/col-highlight) ; you need to install vline.el too
 ;(column-highlight-mode)
