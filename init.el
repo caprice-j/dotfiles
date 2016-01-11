@@ -157,7 +157,7 @@
 ; replace unusable buffer-switch
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 ; MAYBE-LATER: installing rtags is hard
-(el-get-bundle rtags)
+ (el-get-bundle rtags)
 (el-get-bundle jixiuf/helm-etags-plus)
 (setq rtags-use-helm t)
 (global-set-key (kbd "M-t") 'rtags-symbol-type)  ;  show type information on variables in minibuffer
@@ -166,6 +166,7 @@
 (global-set-key (kbd "M-d") 'rtags-print-dependencies) ; show all include files. powerful!
 (global-set-key (kbd "M-c") 'rtags-print-class-hierarchy) ; on subclass names?
 (global-set-key (kbd "M-b") 'rtags-find-symbol) ; back    ; go back to definition. 
+(global-set-key (kbd "M-s") 'rtags-display-summary) ; back    ; go back to definition. 
 ;(global-set-key (kbd "M-r") 'rtags-references-tree)       ; show usage points
 (global-set-key (kbd "M-r") 'rtags-find-references)       ; show usage points
 (global-set-key [f12] 'eval-buffer)                       ; on buffer of init.el, reload
@@ -251,9 +252,8 @@
 
 (defalias 'exit 'save-buffers-kill-emacs)
 
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
-
+; M-ESC ESC is ESC ESC ESC. keyboard-quit is C-g
+(global-set-key (kbd "M-ESC ESC") 'keyboard-quit)
 
 (set-language-environment       "Japanese")
 (prefer-coding-system           'utf-8-unix)
