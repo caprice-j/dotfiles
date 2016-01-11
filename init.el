@@ -1,18 +1,18 @@
 
 
-(set-foreground-color                                  "#CCCCCC") ; 文字色
+;(set-foreground-color                                  "#CCCCCC") ; 文字色
 ;(set-background-color                                  "#333333") ; 背景色
-(set-cursor-color                                      "#FF0000") ; カーソル色
-(set-face-background 'region                           "#222244") ; リージョン
-(set-face-foreground 'mode-line                         "#CCCCCC") ; モードライン文字
-(set-face-background 'mode-line                         "#333333") ; モードライン背景
-(set-face-foreground 'mode-line-inactive               "#333333") ; モードライン文字(非アクティブ)
-(set-face-background 'mode-line-inactive               "#CCCCCC") ; モードライン背景(非アクティブ)
-(set-face-foreground 'font-lock-comment-delimiter-face "#888888") ; コメントデリミタ
-(set-face-foreground 'font-lock-comment-face           "#888888") ; コメント
-(set-face-foreground 'font-lock-string-face            "#7FFF7F") ; 文字列
-(set-face-foreground 'font-lock-function-name-face     "#BF7FFF") ; 関数名
-(set-face-foreground 'font-lock-keyword-face           "#FF7F7F") ; キーワード
+;(set-cursor-color                                      "#FF0000") ; カーソル色
+;(set-face-background 'region                           "#222244") ; リージョン
+;(set-face-foreground 'mode-line                         "#CCCCCC") ; モードライン文字
+;(set-face-background 'mode-line                         "#333333") ; モードライン背景
+;(set-face-foreground 'mode-line-inactive               "#333333") ; モードライン文字(非アクティブ)
+;(set-face-background 'mode-line-inactive               "#CCCCCC") ; モードライン背景(非アクティブ)
+;(set-face-foreground 'font-lock-comment-delimiter-face "#888888") ; コメントデリミタ
+;(set-face-foreground 'font-lock-comment-face           "#888888") ; コメント
+;(set-face-foreground 'font-lock-string-face            "#7FFF7F") ; 文字列
+;(set-face-foreground 'font-lock-function-name-face     "#BF7FFF") ; 関数名
+;(set-face-foreground 'font-lock-keyword-face           "#FF7F7F") ; キーワード
 (set-face-foreground 'font-lock-constant-face          "#FFBF7F") ; 定数(this, selfなども)
 (set-face-foreground 'font-lock-variable-name-face     "#7F7FFF") ; 変数
 (set-face-foreground 'font-lock-type-face              "#FFFF7F") ; クラス
@@ -43,6 +43,11 @@
  '(anzu-replace-threshold 50)
  '(anzu-replace-to-string-separator " => "))
 
+; multi-term is a powerful terminal emulator.
+; 1. It does not use C-z, C-x, C-c, C-h, C-y, and ESC.
+; 2. It can invoce multiple instances.
+(el-get-bundle multi-term)
+
 (load-library "hideshow")
 (el-get-bundle emacswiki:hideshowvis)
 (autoload 'hideshowvis-enable "hideshowvis" "Highlight foldable regions")
@@ -60,9 +65,14 @@
 
 
 (el-get-bundle ess)
-(setq auto-mode-alist
-     (cons (cons "\\.r$" 'R-mode) auto-mode-alist))
 (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
+;; 拡張子が r, R の場合に R-mode を起動
+(add-to-list 'auto-mode-alist '("\\.[rR]$" . R-mode))
+;; R-mode を起動する時に ess-site をロード
+(autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
+;; R を起動する時に ess-site をロード
+(autoload 'R "ess-site" "start R" t)
+
 
 (el-get-bundle helm-etags-plus)
 
@@ -101,13 +111,24 @@
 (define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action)
 (global-set-key (kbd "M-x") 'helm-M-x)
 
-(require 'rtags)
+; MAYBE-LATER: installing rtags is hard
+(el-get-bundle rtags)
+(el-get-bundle jixiuf/helm-etags-plus)
+(global-set-key (kbd "M-t") 'rtags-symbol-type)  ;  show type information on variables in minibuffer
+(global-set-key (kbd "M-i") 'rtags-symbol-info)  ;  show type information on variablse in a separate buffer
+(global-set-key (kbd "M-l") 'rtags-taglist)      ;  create a buffer of list all variables/functions 
+(global-set-key (kbd "M-d") 'rtags-print-dependencies) ; show all include files. powerful!
+(global-set-key (kbd "M-c") 'rtags-print-class-hierarchy) ; on subclass names?
+(global-set-key (kbd "M-b") 'rtags-find-symbol) ; back    ; go back to definition. 
+(global-set-key (kbd "M-r") 'rtags-references-tree)       ; show usage points
+(global-set-key [f12] 'eval-buffer)                       ; on buffer of init.el, reload
+(global-set-key [f11] 'describe-bindings)                 ; all key bindings
 
 (el-get-bundle syohex/emacs-helm-ag)
 
-(el-get-bundle emacsmirror/col-highlight) ; you need to install vline.el too
-(column-highlight-mode)
-(custom-set-faces '(col-highlight((t (:background "black")))))
+;(el-get-bundle emacsmirror/col-highlight) ; you need to install vline.el too
+;(column-highlight-mode)
+;(custom-set-faces '(col-highlight((t (:background "black")))))
 
 (el-get-bundle magnars/multiple-cursors.el)
 
