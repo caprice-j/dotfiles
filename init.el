@@ -101,6 +101,8 @@
 (define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action)
 (global-set-key (kbd "M-x") 'helm-M-x)
 
+(require 'rtags)
+
 (el-get-bundle syohex/emacs-helm-ag)
 
 (el-get-bundle emacsmirror/col-highlight) ; you need to install vline.el too
@@ -141,6 +143,8 @@
 ;(define-key global-map (kbd "M-f") (kbd "C-u 3 C-f"))
 ;(define-key global-map (kbd "M-b") (kbd "C-u 3 C-b"))
 
+; Since C-g is too strong, softer "excape" is needed
+(global-set-key (kbd "C-M-g") 'keyboard-escape-quit)
 
  (global-hl-line-mode t)
  (custom-set-faces '(hl-line ((t (:background "black"))))) 
