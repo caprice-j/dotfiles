@@ -1,0 +1,66 @@
+# ~/.tmuxinator/res.yml
+
+# research development environment
+name: res
+root: ~/alex/mlfd_container/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t res
+
+windows:
+  - search:
+      root: ~/alex/mlfd_container/src/search
+      panes:
+        - clear
+  - build.py:
+      #layout: main-vertical main-horizontal tiled even-vertical
+      layout: even-horizontal
+      panes:
+        - ./build.py release64 -j8
+        - cd ./builds/release64/bin && clear
+  - bin:
+      root: ~/alex/mlfd_container/builds/release64/bin
+      panes:
+        - clear
+  - git-search:
+      root: ~/alex/mlfd_container/src/search
+      panes:
+        - git status
+  - git-bin:
+      root: ~/alex/mlfd_container/builds/release64/bin
+      panes:
+        - git status
+  - CSV:
+      root: ~/alex/mlfd_container/builds/release64/bin/csv
+      panes:
+        - clear
+  - rdm: rdm
+  - dotfiles:
+      root: ~/dotfiles
+      panes:
+        - emacs -nw init.el
+  - normal-fd:
+      root: ~/alex/fd/
+      panes:
+        - ./fast-downward.py ../mlfd_container/benchmarks/_pzl/t8s1a0100.pddl --search"astar(lmcut())"
