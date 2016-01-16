@@ -1,6 +1,7 @@
 #!/bin/sh
 
 TGT_EMACS_FILE=~/.emacs.d/init.el
+TGT_EMACS_INIT_MODELINE_FILE=~/.emacs.d/init-modeline.el
 TGT_TMUX_FILE=~/.tmux.conf
 TGT_TMUXINATOR=~/.tmuxinator/res.yml
 
@@ -13,7 +14,7 @@ DOTFILES=~/dotfiles
 rm -f  ~/.emacs
 rm -f  ~/.emacs.el
 ln -fs  ${DOTFILES}/init.el     ${TGT_EMACS_FILE}
-
+ln -fs ${DOTFILES}/init-modeline.el ${TGT_EMACS_INIT_MODELINE_FILE}
 
 ln -fs  ${DOTFILES}/tmux.conf   ${TGT_TMUX_FILE}
 

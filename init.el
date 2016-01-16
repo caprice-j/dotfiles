@@ -1,4 +1,4 @@
-
+(add-to-list 'load-path "~/.emacs.d")
 
 ;(set-foreground-color                                  "#CCCCCC") ; 文字色
 ;(set-background-color                                  "#333333") ; 背景色
@@ -13,11 +13,11 @@
 ;(set-face-foreground 'font-lock-string-face            "#7FFF7F") ; 文字列
 ;(set-face-foreground 'font-lock-function-name-face     "#BF7FFF") ; 関数名
 ;(set-face-foreground 'font-lock-keyword-face           "#FF7F7F") ; キーワード
-(set-face-foreground 'font-lock-constant-face          "#FFBF7F") ; 定数(this, selfなども)
-(set-face-foreground 'font-lock-variable-name-face     "#7F7FFF") ; 変数
-(set-face-foreground 'font-lock-type-face              "#FFFF7F") ; クラス
-(set-face-foreground 'fringe                           "#666666") ; fringe(折り返し記号なでが出る部分)
-(set-face-background 'fringe                           "#282828") ; fringe
+;(set-face-foreground 'font-lock-constant-face          "#FFBF7F") ; 定数(this, selfなども)
+;(set-face-foreground 'font-lock-variable-name-face     "#7F7FFF") ; 変数
+;(set-face-foreground 'font-lock-type-face              "#FFFF7F") ; クラス
+;(set-face-foreground 'fringe                           "#666666") ; fringe(折り返し記号なでが出る部分)
+;(set-face-background 'fringe                           "#282828") ; fringe
 
 ;; load package-manager: el-get
 (when load-file-name
@@ -46,7 +46,7 @@
 ; multi-term is a powerful terminal emulator.
 ; 1. It does not use C-z, C-x, C-c, C-h, C-y, and ESC.
 ; 2. It can invoce multiple instances.
-(el-get-bundle multi-term)
+;(el-get-bundle multi-term)
 
 (load-library "hideshow")
 (el-get-bundle emacswiki:hideshowvis)
@@ -84,9 +84,9 @@
 
 (el-get-bundle auto-complete)
 
-;(el-get-bundle syohex/emacs-git-gutter)
-(el-get-bundle nschum/fringe-helper.el)
-(el-get-bundle syohex/emacs-git-gutter-fringe)
+(el-get-bundle syohex/emacs-git-gutter)
+;(el-get-bundle nschum/fringe-helper.el)
+;(el-get-bundle syohex/emacs-git-gutter-fringe)
 (global-git-gutter-mode +1)
 ;(global-linum-mode)
 ;(setq git-gutter-fr:side 'right-fringe)
@@ -154,18 +154,25 @@
 (setq ace-isearch-use-function-from-isearch nil)
 (define-key isearch-mode-map (kbd "M-m") 'helm-multi-swoop-all-from-isearch)
 
+; good-looking status bar
+;(el-get-bundle powerline)
+;(powerline-default-theme)
+;(require 'init-modeline)
+
+
 ; replace unusable buffer-switch
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 ; MAYBE-LATER: installing rtags is hard
  (el-get-bundle rtags)
 (el-get-bundle jixiuf/helm-etags-plus)
-(setq rtags-use-helm t)
+(custom-set-variables '(rtags-use-helm t))
 (global-set-key (kbd "M-t") 'rtags-symbol-type)  ;  show type information on variables in minibuffer
 (global-set-key (kbd "M-i") 'rtags-symbol-info)  ;  show type information on variablse in a separate buffer
 (global-set-key (kbd "M-l") 'rtags-taglist)      ;  create a buffer of list all variables/functions 
 (global-set-key (kbd "M-d") 'rtags-print-dependencies) ; show all include files. powerful!
 (global-set-key (kbd "M-c") 'rtags-print-class-hierarchy) ; on subclass names?
-(global-set-key (kbd "M-b") 'rtags-find-symbol) ; back    ; go back to definition. 
+(global-set-key (kbd "M-t") 'rtags-find-symbol)        ; go back to definition. 
+(global-set-key (kbd "M-b") 'rtags-location-stack-bak) ; back for M-t
 (global-set-key (kbd "M-s") 'rtags-display-summary) ; back    ; go back to definition. 
 ;(global-set-key (kbd "M-r") 'rtags-references-tree)       ; show usage points
 (global-set-key (kbd "M-r") 'rtags-find-references)       ; show usage points
