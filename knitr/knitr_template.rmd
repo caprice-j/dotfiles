@@ -27,16 +27,17 @@ output:
 ## 前回を踏まえた課題
 
 ```{r echo=FALSE, warning=FALSE}
-library(grid,      quietly = TRUE, warn.conflicts = FALSE)
-library(dplyr,     quietly = TRUE, warn.conflicts = FALSE)
-library(ggplot2,   quietly = TRUE, warn.conflicts = FALSE)
-library(tidyr,     quietly = TRUE, warn.conflicts = FALSE)
-library(stringr,   quietly = TRUE, warn.conflicts = FALSE)
-library(lubridate, quietly = TRUE, warn.conflicts = FALSE)
-library(ggthemes,  quietly = TRUE, warn.conflicts = FALSE)
-library(magrittr,  quietly = TRUE, warn.conflicts = FALSE)
-library(plotflow,  quietly = TRUE, warn.conflicts = FALSE)
-theme_set( theme_bw(base_family = "Hiragino Mincho Pro W3") )
+if( require('grid')      == FALSE ) install.packages('grid');      library('grid',      quietly = TRUE, warn.conflicts = FALSE)
+if( require('dplyr')     == FALSE ) install.packages('dplyr');     library('dplyr',     quietly = TRUE, warn.conflicts = FALSE)
+if( require('ggplot2')   == FALSE ) install.packages('ggplot2');   library('ggplot2',   quietly = TRUE, warn.conflicts = FALSE)
+if( require('tidyr')     == FALSE ) install.packages('tidyr');     library('tidyr',     quietly = TRUE, warn.conflicts = FALSE)
+if( require('stringr')   == FALSE ) install.packages('stringr');   library('stringr',   quietly = TRUE, warn.conflicts = FALSE)
+if( require('lubridate') == FALSE ) install.packages('lubridate'); library('lubridate', quietly = TRUE, warn.conflicts = FALSE)
+if( require('ggthemes')  == FALSE ) install.packages('ggthemes');  library('ggthemes',  quietly = TRUE, warn.conflicts = FALSE)
+if( require('magrittr')  == FALSE ) install.packages('magrittr');  library('magrittr',  quietly = TRUE, warn.conflicts = FALSE)
+if( require('plotflow')  == FALSE ) install.packages('plotflow');  library('plotflow',  quietly = TRUE, warn.conflicts = FALSE)
+theme_set( theme_bw() )
+#theme_set( theme_bw(base_family = "Hiragino Mincho Pro W3") ) # if true, I cannot use pdf() for a font problem
 ```
 
 # 分析するデータの読み込み・前処理
