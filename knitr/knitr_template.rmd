@@ -9,7 +9,7 @@ output:
     toc_depth: 3
     number_sections: true
     fig_caption: true
-    css: /Users/PCUser/dev/cmn/knitr.css
+    css: ~/dotfiles/knitr/knitr.css
     theme: default # default, cerulean, journal, flatly, readable, spacelab, united, cosmo
     highlight: default # tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate
     dev: png
