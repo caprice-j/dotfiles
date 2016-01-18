@@ -1,0 +1,94 @@
+---
+# see http://rmarkdown.rstudio.com/html_document_format.html
+title: "タイトル"
+author: " - "
+date: "December 10, 2015"
+output: 
+  html_document: 
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    fig_caption: true
+    css: /Users/PCUser/dev/cmn/knitr.css
+    theme: default # default, cerulean, journal, flatly, readable, spacelab, united, cosmo
+    highlight: default # tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate
+    dev: png
+    #mathjax: local
+    #self_contained: false
+  # includes:
+    # in_header: header.html
+    # before_body: prefix.html
+    # after_body:: suffix.html
+  # template: a.html
+---
+
+# 事前の検討事項
+## 分析の目的
+## 前回を踏まえた課題
+
+```{r echo=FALSE, warning=FALSE}
+library(grid,      quietly = TRUE, warn.conflicts = FALSE)
+library(dplyr,     quietly = TRUE, warn.conflicts = FALSE)
+library(ggplot2,   quietly = TRUE, warn.conflicts = FALSE)
+library(tidyr,     quietly = TRUE, warn.conflicts = FALSE)
+library(stringr,   quietly = TRUE, warn.conflicts = FALSE)
+library(lubridate, quietly = TRUE, warn.conflicts = FALSE)
+library(ggthemes,  quietly = TRUE, warn.conflicts = FALSE)
+library(magrittr,  quietly = TRUE, warn.conflicts = FALSE)
+library(plotflow,  quietly = TRUE, warn.conflicts = FALSE)
+theme_set( theme_bw(base_family = "Hiragino Mincho Pro W3") )
+```
+
+# 分析するデータの読み込み・前処理
+
+```{r cache=TRUE}
+
+```
+
+
+# 分析の主題
+## 各Termの前後で、どう成績は変動しているのか？
+
+```{r cache=TRUE}
+
+```
+
+```{r fig.width=10, fig.height=10}
+
+```
+
+
+# 事後の検討事項
+## このレポートで達成したことのまとめ
+## 次回への課題
+### 方向1
+### 方向2
+### 方向3
+
+
+#### （解析者使用欄）
+
+```{r eval=TRUE, echo=TRUE, warning=TRUE, error=FALSE, message=TRUE, tidy=FALSE, results='markup', cache=FALSE, fig.width=7, fig.height=7, fig.align='center', fig.ext='png', tidy=TRUE}
+
+```
+
+
+text (# header 1 ~ ###### header6)
+*italics*
+**bold**
+superscript^2^
+~~strikethrough~~
+[link](www.rstudio.com)
+endash: --
+emdash: ---
+ellipsis: ...
+inline : $A = \pi * r^{2}$
+<!-- ![Logo](logo.png) -->
+***
+> block quote
+* unordered list
+* item 2
+  + sub-item 1
+1. ordered list
+2. item2
+

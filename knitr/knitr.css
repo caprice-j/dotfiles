@@ -1,0 +1,13 @@
+#header {
+  text-align: center;
+}
+
+.title:before{
+  content: "TITLE: ";
+}
+.author:before{
+  content: "AUTHOR: ";
+}
+.date:before{
+  content: "DATE: ";
+}
