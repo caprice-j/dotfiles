@@ -30,8 +30,11 @@ output:
 </div>
 
 # 事前の検討事項
+
 ## 解決したい問題
+
 ## 目的と手法
+
 ## 前回からの考慮
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -57,6 +60,7 @@ theme_set( theme_bw() )
 
 
 # 分析の主題
+
 ## When Whre Who What How なのか？
 
 ### 出力に対する考察
@@ -74,10 +78,15 @@ theme_set( theme_bw() )
 
 
 # 事後の検討事項
+
 ## 総括
+
 ## 次回への課題
+
 ### 方向1
+
 ### 方向2
+
 ### 方向3
 
 
