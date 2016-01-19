@@ -22,25 +22,34 @@ output:
   # template: a.html
 ---
 
-# 事前の検討事項
-## 分析の目的
-## 前回を踏まえた課題
+######.abstract Abstract.
 
-```{r echo=FALSE, warning=FALSE}
-if( require('grid')      == FALSE ) install.packages('grid');      library('grid',      quietly = TRUE, warn.conflicts = FALSE)
-if( require('dplyr')     == FALSE ) install.packages('dplyr');     library('dplyr',     quietly = TRUE, warn.conflicts = FALSE)
-if( require('ggplot2')   == FALSE ) install.packages('ggplot2');   library('ggplot2',   quietly = TRUE, warn.conflicts = FALSE)
-if( require('tidyr')     == FALSE ) install.packages('tidyr');     library('tidyr',     quietly = TRUE, warn.conflicts = FALSE)
-if( require('stringr')   == FALSE ) install.packages('stringr');   library('stringr',   quietly = TRUE, warn.conflicts = FALSE)
-if( require('lubridate') == FALSE ) install.packages('lubridate'); library('lubridate', quietly = TRUE, warn.conflicts = FALSE)
-if( require('ggthemes')  == FALSE ) install.packages('ggthemes');  library('ggthemes',  quietly = TRUE, warn.conflicts = FALSE)
-if( require('magrittr')  == FALSE ) install.packages('magrittr');  library('magrittr',  quietly = TRUE, warn.conflicts = FALSE)
-if( require('plotflow')  == FALSE ) install.packages('plotflow');  library('plotflow',  quietly = TRUE, warn.conflicts = FALSE)
+<h1 id='report-abstract-title'> Abstract. </h1>
+<div id='report-abstract-content'>
+  - 未記載 - 
+</div>
+
+# 事前の検討事項
+## 解決したい問題
+## 目的と手法
+## 前回からの考慮
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+if( require('grid')       == FALSE ) install.packages('grid');       library('grid',      quietly = TRUE, warn.conflicts = FALSE)
+if( require('dplyr')      == FALSE ) install.packages('dplyr');      library('dplyr',     quietly = TRUE, warn.conflicts = FALSE)
+if( require('ggplot2')    == FALSE ) install.packages('ggplot2');    library('ggplot2',   quietly = TRUE, warn.conflicts = FALSE)
+if( require('tidyr')      == FALSE ) install.packages('tidyr');      library('tidyr',     quietly = TRUE, warn.conflicts = FALSE)
+if( require('stringr')    == FALSE ) install.packages('stringr');    library('stringr',   quietly = TRUE, warn.conflicts = FALSE)
+if( require('lubridate')  == FALSE ) install.packages('lubridate');  library('lubridate', quietly = TRUE, warn.conflicts = FALSE)
+if( require('ggthemes')   == FALSE ) install.packages('ggthemes');   library('ggthemes',  quietly = TRUE, warn.conflicts = FALSE)
+if( require('magrittr')   == FALSE ) install.packages('magrittr');   library('magrittr',  quietly = TRUE, warn.conflicts = FALSE)
+if( require('plotflow')   == FALSE ) install.packages('plotflow');   library('plotflow',  quietly = TRUE, warn.conflicts = FALSE)
+if( require('extrafont')  == FALSE ) install.packages('extrafont');  library('extrafont', quietly = TRUE, warn.conflicts = FALSE)
 theme_set( theme_bw() )
 #theme_set( theme_bw(base_family = "Hiragino Mincho Pro W3") ) # if true, I cannot use pdf() for a font problem
 ```
 
-# 分析するデータの読み込み・前処理
+## 分析するデータの読み込み・前処理
 
 ```{r cache=TRUE}
 
@@ -48,7 +57,12 @@ theme_set( theme_bw() )
 
 
 # 分析の主題
-## 各Termの前後で、どう成績は変動しているのか？
+## When Whre Who What How なのか？
+
+### 出力に対する考察
+
+<a href='' class='pdf-link'><img class='adobe-pdf-logo' src='/home/pcuser/dotfiles/knitr/ip/pdf.jpg'>IVF-for-all-patients.pdf</a>
+
 
 ```{r cache=TRUE}
 
@@ -60,14 +74,16 @@ theme_set( theme_bw() )
 
 
 # 事後の検討事項
-## このレポートで達成したことのまとめ
+## 総括
 ## 次回への課題
 ### 方向1
 ### 方向2
 ### 方向3
 
 
-#### （解析者使用欄）
+<!--
+
+###### （解析者使用欄）
 
 ```{r eval=TRUE, echo=TRUE, warning=TRUE, error=FALSE, message=TRUE, tidy=FALSE, results='markup', cache=FALSE, fig.width=7, fig.height=7, fig.align='center', fig.ext='png', tidy=TRUE}
 
@@ -75,21 +91,22 @@ theme_set( theme_bw() )
 
 
 text (# header 1 ~ ###### header6)
-*italics*
-**bold**
-superscript^2^
-~~strikethrough~~
-[link](www.rstudio.com)
-endash: --
-emdash: ---
-ellipsis: ...
-inline : $A = \pi * r^{2}$
-<!-- ![Logo](logo.png) -->
-***
-> block quote
-* unordered list
-* item 2
+  *italics*
+    **bold**
+    superscript^2^
+    ~~strikethrough~~
+    [link](www.rstudio.com)
+  endash: --
+    emdash: ---
+    ellipsis: ...
+  ![Logo](logo.png)
+      inline : $A = \pi * r^{2}$
+    ***
+    > block quote
+  * unordered list
+  * item 2
   + sub-item 1
-1. ordered list
-2. item2
+  1. ordered list
+  2. item2
 
+-->

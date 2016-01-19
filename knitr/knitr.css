@@ -1,13 +1,166 @@
+html {
+  font-size: 10px; /* rem : root em. 10px is convenient for calculation */
+}
+
 #header {
-  text-align: center;
+  /* containers of .title, .author, and .date */
+  text-align: left;
+}
+
+ .title:before,
+.author:before,
+  .date:before,
+   #TOC:before {
+  /* bootstrap .btn */
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 3px 3px 3px 7px; /* top right bottom left */
+    margin-bottom: 0;
+    margin-right:  1rem;
+    font-size: 11px;
+    line-height: 1.2;
+    border-radius: 5px;
+    
+  /* bootstrap .btn-primary */
+    color: #fff;
+    background-color: #357ebd;
+    border-color: #357ebd;
+    
+  /* misc */
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
 }
 
 .title:before{
-  content: "TITLE: ";
+  content: "TITLE : ";
 }
 .author:before{
-  content: "AUTHOR: ";
+  content: "AUTHOR : ";
 }
 .date:before{
-  content: "DATE: ";
+  content: "LAST UPDATE : ";
+}
+
+.title {
+  font-size: 3rem; /* if rem == 10px -> 30px */ 
+  text-align: left;
+}
+
+.title    ,
+.author em,
+.date   em {
+  color: #000;
+  font-style: normal;
+  font-weight: bold;
+}
+
+#TOC:before{
+  content: "TABLE OF CONTENTS";
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+#report-abstract-title {
+  text-align: center;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+
+#report-abstract-container {
+  font-family: 'TakaoPMincho', 'Hiragino Kaku Mincho ProN', Meiryo, 'MS PMincho', serif;
+  border: 1px solid #000;
+  border-radius: 9px;
+  padding: 14px;
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', Meiryo, 'MS PGothic', Sans-serif;
+  line-height: 150%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; 
+  
+  /* automated numbering */
+  counter-reset: num_h_two; /* set as 1 */ 
+}
+
+body {
+  max-width: 940px;
+  margin: auto;
+  padding: 1em;
+  line-height: 150%;
+}
+
+tt, code, pre {
+   font-size: 14px;
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+/* automated numbering */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #0068A3;
+  font-weight: bold;
+}
+
+/* start from h2 because h1 is reserved for title:'  */
+
+h1 {
+  /* considerations before analysis,
+                           analysis,
+                    after  analysis  */
+  text-align: center;
+  /* counter-increment: num_h_two; */
+  /* counter-reset: num_h_three; */
+}
+h1:before {
+  font-size: 1.2rem;
+  /* content: "PART " counter(num_h_two) ". "; */
+}
+  
+h2 {
+  /* counter-increment: num_h_three; */
+  /* counter-reset: num_h_four; */
+}
+h2:before {
+  font-size: 1.2rem;
+  /* content: " " counter(num_h_two) "." counter(num_h_three) ". "; */
+}
+
+h3 {
+  /* counter-increment: num_h_four; */
+  /* counter-reset: num_h_five; */
+}
+
+h3:before {
+  font-size: 1.2rem;
+  /* content: " " counter(num_h_two) "." counter(num_h_three) "." counter(num_h_four) ". "; */
+}
+
+/* decoration */
+
+.pdf-link {
+  margin: 10px auto 10px auto;
+  display: block;
+  min-height: 70px;
+  max-height: 100px;
+  max-width: 55%;
+  background-color: #EEE;
+  border: 1px solid #BBB;
+  border-radius: 14px;
+  background-image:  url('/home/pcuser/dotfiles/knitr/ip/adobe-pdf-logo.png');
+  background-repeat: no-repeat;
+  background-size:  contain;  /* cover; */    /* for fitting */
+  background-position: left center;
+  text-align: right;
+  line-height: 5;
+  padding: 10px 20px 10px 10px;
+  color: #000;
+  font-weight: bold;
 }
