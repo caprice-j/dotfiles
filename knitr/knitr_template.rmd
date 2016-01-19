@@ -61,7 +61,7 @@ theme_set( theme_bw() )
 
 ### 出力に対する考察
 
-<a href='' class='pdf-link'><img class='adobe-pdf-logo' src='/home/pcuser/dotfiles/knitr/ip/pdf.jpg'>IVF-for-all-patients.pdf</a>
+<a href='' class='pdf-link'><img class='adobe-pdf-logo' src='/home/pcuser/dotfiles/knitr/ip/pdf.jpg'>my_output.pdf</a>
 
 
 ```{r cache=TRUE}
