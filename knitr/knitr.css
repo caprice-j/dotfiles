@@ -143,6 +143,16 @@ h3:before {
   /* content: " " counter(num_h_two) "." counter(num_h_three) "." counter(num_h_four) ". "; */
 }
 
+/* jQuery toggling */
+.level1 { /* level1 is a knitr-generated class */
+  border: 1px solid #000;
+  border-radius: 1rem;
+  margin-top:    1rem;
+  margin-bottom: 1rem;
+  padding: 5px 10px 5px 10px; /* top right bottom left */
+  cursor: pointer;
+}
+
 /* decoration */
 
 .pdf-link {

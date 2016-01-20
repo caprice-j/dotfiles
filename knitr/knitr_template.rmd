@@ -6,7 +6,7 @@ date: "December 10, 2015"
 output: 
   html_document: 
     toc: true
-    toc_depth: 3
+    toc_depth: 5
     number_sections: true
     fig_caption: true
     css: ~/dotfiles/knitr/knitr.css
@@ -21,6 +21,19 @@ output:
     # after_body:: suffix.html
   # template: a.html
 ---
+
+<script src='/home/pcuser/dotfiles/knitr/jQuery-2.2.0.js'> </script>
+
+<script type="text/javascript">
+    $(function(){
+        $(".level1").on("click", function() {
+            // $(this).children().not(':first').slideToggle(); 
+            $(this).children().not(':first').fadeToggle();
+            $(this).toggleClass("active"); 
+        });
+    });
+</script>
+
 
 ######.abstract Abstract.
 
@@ -59,13 +72,14 @@ theme_set( theme_bw() )
 ```
 
 
+
 # 分析の主題
 
 ## When Whre Who What How なのか？
 
 ### 出力に対する考察
 
-<a href='' class='pdf-link'><img class='adobe-pdf-logo' src='/home/pcuser/dotfiles/knitr/ip/pdf.jpg'>my_output.pdf</a>
+<a href='' class='pdf-link'>my_output.pdf</a>
 
 
 ```{r cache=TRUE}
@@ -75,7 +89,6 @@ theme_set( theme_bw() )
 ```{r fig.width=10, fig.height=10}
 
 ```
-
 
 # 事後の検討事項
 
