@@ -1,4 +1,12 @@
+
 (add-to-list 'load-path "~/.emacs.d")
+
+; for japanese
+(require 'mozc)
+(set-language-environment "Japanese")
+(setq default-input-method "japanese-mozc")
+(prefer-coding-system 'utf-8)
+(global-set-key (kbd "C-]") 'toggle-input-method)
 
 ;(set-foreground-color                                  "#CCCCCC") ; 文字色
 ;(set-background-color                                  "#333333") ; 背景色
@@ -155,10 +163,23 @@
 (define-key isearch-mode-map (kbd "M-m") 'helm-multi-swoop-all-from-isearch)
 
 ; good-looking status bar
-;(el-get-bundle powerline)
-;(powerline-default-theme)
+(el-get-bundle powerline)
+; choose one
+(powerline-default-theme)
+;(powerline-center-theme)
+;(powerline-vim-theme)
+
+;(setq powerline-default-separator 'utf-8)
+;(setq powerline-arrow-shape 'arrow)
+;(setq powerline-default-separator 'arrow)
 ;(require 'init-modeline)
 
+;set emacs color theme
+(el-get-bundle emacs-jp/replace-colorthemes)
+(add-to-list 'custom-theme-load-path
+	     (file-name-as-directory "~/.emacs.d/el-get/replace-colorthemes/"))
+(load-theme 'railscast t t)
+(enable-theme 'railscast)
 
 ; replace unusable buffer-switch
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
