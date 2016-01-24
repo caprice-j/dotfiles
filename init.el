@@ -8,14 +8,18 @@
 (prefer-coding-system 'utf-8)
 (global-set-key (kbd "C-]") 'toggle-input-method)
 
+; #026afe : purple
+
 ;(set-foreground-color                                  "#CCCCCC") ; 文字色
 ;(set-background-color                                  "#333333") ; 背景色
 ;(set-cursor-color                                      "#FF0000") ; カーソル色
 ;(set-face-background 'region                           "#222244") ; リージョン
-;(set-face-foreground 'mode-line                         "#CCCCCC") ; モードライン文字
-;(set-face-background 'mode-line                         "#333333") ; モードライン背景
-;(set-face-foreground 'mode-line-inactive               "#333333") ; モードライン文字(非アクティブ)
-;(set-face-background 'mode-line-inactive               "#CCCCCC") ; モードライン背景(非アクティブ)
+(set-face-attribute 'mode-line-buffer-id nil                       :background "#005faf") ; :background just for buffer name
+(set-face-attribute 'mode-line           nil :foreground "#FFFFFF" :background "blue") ; :background just for buffer name & input mode
+(set-face-attribute 'mode-line-inactive  nil :foreground "#FFFFFF" :background "black")
+
+;(set-face-foreground 'mode-line-inactive               "#333333") ; モードライン文字 (non-active)
+;(set-face-background 'mode-line-inactive               "#CCCCCC") ; モードライン背景 (non-active)
 ;(set-face-foreground 'font-lock-comment-delimiter-face "#888888") ; コメントデリミタ
 ;(set-face-foreground 'font-lock-comment-face           "#888888") ; コメント
 ;(set-face-foreground 'font-lock-string-face            "#7FFF7F") ; 文字列
@@ -244,9 +248,9 @@
 ; Since C-g is too strong, softer "excape" is needed
 (global-set-key (kbd "C-M-g") 'keyboard-escape-quit)
 
- (global-hl-line-mode t)
-; (custom-set-faces '(hl-line ((t (:background "#00FF44"))))) 
-(setq hl-line-face 'underline) ; 下線
+(global-hl-line-mode t) ; highlight the current line
+(custom-set-faces '(hl-line ((t (:background "black"))))) 
+;(setq hl-line-face 'underline) ; 下線
 ;; highlight current line
 ;(el-get-bundle jaspace)
 ;; hilight paren
@@ -273,8 +277,9 @@
 
 (setq backup-inhibited t)
 
-(setq tab-width 4)
-(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4) ; 4 spaces
+(setq-default indent-tabs-mode nil) ; auto indent after newline
+(menu-bar-mode -1) ; hide menu bar
 
 ; error checker
 ; (add-hook 'c-mode-common-hook 'flycheck-mode)
