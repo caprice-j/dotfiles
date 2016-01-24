@@ -40,8 +40,6 @@
     (eval-print-last-sexp)))
 
 ;  packages
-(el-get-bundle magnars/multiple-cursors.el)
-
 (el-get-bundle anzu)
 (global-anzu-mode +1)
 (custom-set-variables
@@ -178,8 +176,10 @@
 (el-get-bundle emacs-jp/replace-colorthemes)
 (add-to-list 'custom-theme-load-path
 	     (file-name-as-directory "~/.emacs.d/el-get/replace-colorthemes/"))
-(load-theme 'railscast t t)
-(enable-theme 'railscast)
+;(load-theme 'desert t t)
+;(load-theme 'clarity t t)
+;(load-theme 'charcoal-black t t)
+;(enable-theme 'charcoal-black)
 
 ; replace unusable buffer-switch
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
@@ -245,7 +245,8 @@
 (global-set-key (kbd "C-M-g") 'keyboard-escape-quit)
 
  (global-hl-line-mode t)
- (custom-set-faces '(hl-line ((t (:background "black"))))) 
+; (custom-set-faces '(hl-line ((t (:background "#00FF44"))))) 
+(setq hl-line-face 'underline) ; 下線
 ;; highlight current line
 ;(el-get-bundle jaspace)
 ;; hilight paren
@@ -258,7 +259,7 @@
 ;(require 'jaspace)
 ;(setq jaspace-highlight-tabs t)
 ;(add-hook 'mmm-mode-hook 'jaspace-mmm-mode-hook)
-;(setq hl-line-face 'underline) ; 下線
+
 
 ; get xterm-related mouse events
 (xterm-mouse-mode t)
