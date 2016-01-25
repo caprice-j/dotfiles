@@ -1,12 +1,17 @@
 
-(add-to-list 'load-path "~/.emacs.d")
+; (add-to-list 'load-path "~/.emacs.d")
 
 ; for japanese
-(require 'mozc)
-(set-language-environment "Japanese")
-(setq default-input-method "japanese-mozc")
+(if (eq system-type 'gnu/linux) 
+  (
+    (require 'mozc)
+    (set-language-environment "Japanese")
+    (setq default-input-method "japanese-mozc")
+    (global-set-key (kbd "C-]") 'toggle-input-method)
+  )
+
+)
 (prefer-coding-system 'utf-8)
-(global-set-key (kbd "C-]") 'toggle-input-method)
 
 ; #026afe : purple
 
@@ -14,7 +19,7 @@
 ;(set-background-color                                  "#333333") ; 背景色
 ;(set-cursor-color                                      "#FF0000") ; カーソル色
 ;(set-face-background 'region                           "#222244") ; リージョン
-(set-face-attribute 'mode-line-buffer-id nil                       :background "#005faf") ; :background just for buffer name
+(set-face-attribute 'mode-line-buffer-id nil                       :background "#000000") ; :background just for buffer name
 (set-face-attribute 'mode-line           nil :foreground "#FFFFFF" :background "blue") ; :background just for buffer name & input mode
 (set-face-attribute 'mode-line-inactive  nil :foreground "#FFFFFF" :background "black")
 
@@ -133,12 +138,9 @@
 (setq helm-buffers-fuzzy-matching t)
 
 
-(el-get-bundle helm-swoop)
+(el-get-bundle ShingoFukuyama/helm-swoop)
 (global-set-key (kbd "M-s") 'helm-swoop)
 (global-set-key (kbd "M-S") 'helm-swoop-back-to-last-print)
-
-; move to helm-swoop in isearch (incremental search)
-(define-key isearch-mode-map (kbd "C-s") 'helm-swoop-from-isearch)
 
 ;(define-key helm-swoop-map (kbd "C-h") 'delete-backward-char)
 ; move to helm-multi-swoop-all in helm-swoop
@@ -157,12 +159,13 @@
 (setq helm-swoop-speed-or-color nil)
 
 ; FIXME: cound not find "avy"
-(el-get-bundle avy)
-(el-get-bundle ace-jump-mode)
+(el-get-bundle abo-abo/avy)
+(el-get-bundle winterTTr/ace-jump-mode)
 (el-get-bundle tam17aki/ace-isearch)
 (global-ace-isearch-mode +1)
 (setq ace-isearch-use-function-from-isearch nil)
 (define-key isearch-mode-map (kbd "M-m") 'helm-multi-swoop-all-from-isearch)
+(define-key isearch-mode-map (kbd "C-s") 'helm-swoop-from-isearch) ; move to helm-swoop in isearch (incremental search)
 
 ; good-looking status bar
 (el-get-bundle powerline)
