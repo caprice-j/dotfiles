@@ -26,12 +26,12 @@ html {
     font-size: 11px;
     line-height: 1.2;
     border-radius: 5px;
-    
+
   /* bootstrap .btn-primary */
     color: #fff;
     background-color: #357ebd;
     border-color: #357ebd;
-    
+
   /* misc */
   box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
 }
@@ -47,7 +47,7 @@ html {
 }
 
 .title {
-  font-size: 3rem; /* if rem == 10px -> 30px */ 
+  font-size: 3rem; /* if rem == 10px -> 30px */
   text-align: left;
 }
 
@@ -84,10 +84,10 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: white;
-  padding: 30px; 
-  
+  padding: 30px;
+
   /* automated numbering */
-  counter-reset: num_h_two; /* set as 1 */ 
+  counter-reset: num_h_two; /* set as 1 */
 }
 
 body {
@@ -123,7 +123,7 @@ h1:before {
   font-size: 1.2rem;
   /* content: "PART " counter(num_h_two) ". "; */
 }
-  
+
 h2 {
   /* counter-increment: num_h_three; */
   /* counter-reset: num_h_four; */
@@ -154,7 +154,7 @@ h3:before {
   background-color: #EEE;
   border: 1px solid #BBB;
   border-radius: 14px;
-  background-image:  url('/home/pcuser/dotfiles/knitr/ip/adobe-pdf-logo.png');
+  background-image:  url('/Users/PCUser/dotfiles/knitr/ip/adobe-pdf-logo.png');
   background-repeat: no-repeat;
   background-size:  contain;  /* cover; */    /* for fitting */
   background-position: left center;
