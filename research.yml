@@ -1,7 +1,7 @@
-# ~/.tmuxinator/res.yml
+# ~/.tmuxinator/research.yml
 
 # research development environment
-name: res
+name: research
 root: ~/alex/mlfd_container/
 
 # Optional tmux socket
@@ -37,7 +37,7 @@ windows:
       #layout: main-vertical main-horizontal tiled even-vertical
       layout: even-horizontal
       panes:
-        - ./build.py release64 -j8
+        - ./build.py release64 -j8 & clear
         - cd ./builds/release64/bin && clear
   - bin:
       root: ~/alex/mlfd_container/builds/release64/bin

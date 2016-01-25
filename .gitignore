@@ -1,1 +1,4 @@
 knitr/.R*
+knitr/knitr_template.html
+knitr/knitr_template_cache/
+knitr/ip/

@@ -1,13 +1,25 @@
+
 (add-to-list 'load-path "~/.emacs.d")
+
+; for japanese
+(require 'mozc)
+(set-language-environment "Japanese")
+(setq default-input-method "japanese-mozc")
+(prefer-coding-system 'utf-8)
+(global-set-key (kbd "C-]") 'toggle-input-method)
+
+; #026afe : purple
 
 ;(set-foreground-color                                  "#CCCCCC") ; 文字色
 ;(set-background-color                                  "#333333") ; 背景色
 ;(set-cursor-color                                      "#FF0000") ; カーソル色
 ;(set-face-background 'region                           "#222244") ; リージョン
-;(set-face-foreground 'mode-line                         "#CCCCCC") ; モードライン文字
-;(set-face-background 'mode-line                         "#333333") ; モードライン背景
-;(set-face-foreground 'mode-line-inactive               "#333333") ; モードライン文字(非アクティブ)
-;(set-face-background 'mode-line-inactive               "#CCCCCC") ; モードライン背景(非アクティブ)
+(set-face-attribute 'mode-line-buffer-id nil                       :background "#005faf") ; :background just for buffer name
+(set-face-attribute 'mode-line           nil :foreground "#FFFFFF" :background "blue") ; :background just for buffer name & input mode
+(set-face-attribute 'mode-line-inactive  nil :foreground "#FFFFFF" :background "black")
+
+;(set-face-foreground 'mode-line-inactive               "#333333") ; モードライン文字 (non-active)
+;(set-face-background 'mode-line-inactive               "#CCCCCC") ; モードライン背景 (non-active)
 ;(set-face-foreground 'font-lock-comment-delimiter-face "#888888") ; コメントデリミタ
 ;(set-face-foreground 'font-lock-comment-face           "#888888") ; コメント
 ;(set-face-foreground 'font-lock-string-face            "#7FFF7F") ; 文字列
@@ -32,8 +44,6 @@
     (eval-print-last-sexp)))
 
 ;  packages
-(el-get-bundle magnars/multiple-cursors.el)
-
 (el-get-bundle anzu)
 (global-anzu-mode +1)
 (custom-set-variables
@@ -155,10 +165,25 @@
 (define-key isearch-mode-map (kbd "M-m") 'helm-multi-swoop-all-from-isearch)
 
 ; good-looking status bar
-;(el-get-bundle powerline)
-;(powerline-default-theme)
+(el-get-bundle powerline)
+; choose one
+(powerline-default-theme)
+;(powerline-center-theme)
+;(powerline-vim-theme)
+
+;(setq powerline-default-separator 'utf-8)
+;(setq powerline-arrow-shape 'arrow)
+;(setq powerline-default-separator 'arrow)
 ;(require 'init-modeline)
 
+;set emacs color theme
+(el-get-bundle emacs-jp/replace-colorthemes)
+(add-to-list 'custom-theme-load-path
+	     (file-name-as-directory "~/.emacs.d/el-get/replace-colorthemes/"))
+;(load-theme 'desert t t)
+;(load-theme 'clarity t t)
+;(load-theme 'charcoal-black t t)
+;(enable-theme 'charcoal-black)
 
 ; replace unusable buffer-switch
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
@@ -223,8 +248,9 @@
 ; Since C-g is too strong, softer "excape" is needed
 (global-set-key (kbd "C-M-g") 'keyboard-escape-quit)
 
- (global-hl-line-mode t)
- (custom-set-faces '(hl-line ((t (:background "black"))))) 
+(global-hl-line-mode t) ; highlight the current line
+(custom-set-faces '(hl-line ((t (:background "black"))))) 
+;(setq hl-line-face 'underline) ; 下線
 ;; highlight current line
 ;(el-get-bundle jaspace)
 ;; hilight paren
@@ -237,7 +263,7 @@
 ;(require 'jaspace)
 ;(setq jaspace-highlight-tabs t)
 ;(add-hook 'mmm-mode-hook 'jaspace-mmm-mode-hook)
-;(setq hl-line-face 'underline) ; 下線
+
 
 ; get xterm-related mouse events
 (xterm-mouse-mode t)
@@ -251,8 +277,9 @@
 
 (setq backup-inhibited t)
 
-(setq tab-width 4)
-(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4) ; 4 spaces
+(setq-default indent-tabs-mode nil) ; auto indent after newline
+(menu-bar-mode -1) ; hide menu bar
 
 ; error checker
 ; (add-hook 'c-mode-common-hook 'flycheck-mode)
