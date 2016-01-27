@@ -2,7 +2,7 @@
 # see http://rmarkdown.rstudio.com/html_document_format.html
 title: "タイトル"
 author: " - "
-date: "December 10, 2015"
+date: "December 10, 2016"
 output: 
   html_document: 
     toc: true
@@ -34,8 +34,6 @@ output:
     });
 </script>
 
-
-######.abstract Abstract.
 
 <h1 id='report-abstract-title'> Abstract. </h1>
 <div id='report-abstract-content'>
