@@ -22,8 +22,6 @@ output:
   # template: a.html
 ---
 
-<script src='/home/pcuser/dotfiles/knitr/jQuery-2.2.0.js'> </script>
-
 <script type="text/javascript">
     $(function(){
         $(".level1").on("click", function() {
