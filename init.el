@@ -1,17 +1,52 @@
+(defun my-window-resizer ()
+  "Control window size and position."
+  (interactive)
+  (let ((window-obj (selected-window))
+        (current-width (window-width))
+        (current-height (window-height))
+        (dx (if (= (nth 0 (window-edges)) 0) 1
+              -1))
+        (dy (if (= (nth 1 (window-edges)) 0) 1
+              -1))
+        action c)
+    (catch 'end-flag
+      (while t
+        (setq action
+              (read-key-sequence-vector (format "size[%dx%d]"
+                                                (window-width)
+                                                (window-height))))
+        (setq c (aref action 0))
+        (cond ((= c ?l)
+               (enlarge-window-horizontally dx))
+              ((= c ?h)
+               (shrink-window-horizontally dx))
+              ((= c ?j)
+               (enlarge-window dy))
+              ((= c ?k)
+               (shrink-window dy))
+              ;; otherwise
+              (t
+               (let ((last-command-char (aref action 0))
+                     (command (key-binding action)))
+                 (when command
+                   (call-interactively command)))
+               (message "Quit")
+               (throw 'end-flag t)))))))
+
 
 ; (add-to-list 'load-path "~/.emacs.d")
 
 ; for japanese
-(if (eq system-type 'gnu/linux) 
-  (
-    (require 'mozc)
-    (set-language-environment "Japanese")
-    (setq default-input-method "japanese-mozc")
-    (global-set-key (kbd "C-]") 'toggle-input-method)
-  )
+;; (if (eq system-type 'gnu/linux) 
+;;   (
+;;     (require 'mozc)
+;;     (set-language-environment "Japanese")
+;;     (setq default-input-method "japanese-mozc")
+;;     (global-set-key (kbd "C-]") 'toggle-input-method)
+;;   )
 
-)
-(prefer-coding-system 'utf-8)
+;; )
+;; (prefer-coding-system 'utf-8)
 
 ; #026afe : purple
 
@@ -49,6 +84,8 @@
     (eval-print-last-sexp)))
 
 ;  packages
+(el-get-bundle yaml-mode)
+
 (el-get-bundle anzu)
 (global-anzu-mode +1)
 (custom-set-variables
@@ -200,7 +237,7 @@
 (global-set-key (kbd "M-d") 'rtags-print-dependencies) ; show all include files. powerful!
 (global-set-key (kbd "M-c") 'rtags-print-class-hierarchy) ; on subclass names?
 (global-set-key (kbd "M-t") 'rtags-find-symbol)        ; go back to definition. 
-(global-set-key (kbd "M-b") 'rtags-location-stack-bak) ; back for M-t
+(global-set-key (kbd "M-b") 'rtags-location-stack-back) ; back for M-t
 (global-set-key (kbd "M-s") 'rtags-display-summary) ; back    ; go back to definition. 
 ;(global-set-key (kbd "M-r") 'rtags-references-tree)       ; show usage points
 (global-set-key (kbd "M-r") 'rtags-find-references)       ; show usage points
