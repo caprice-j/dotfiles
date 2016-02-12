@@ -1,3 +1,7 @@
+
+; does not create files starting from # marks
+(setq create-lockfiles nil)
+
 (defun my-window-resizer ()
   "Control window size and position."
   (interactive)
