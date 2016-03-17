@@ -162,7 +162,8 @@
 ;(el-get-bundle jwiegley/use-package)
 ; stronger than (global-set-key).
 ; I wanna use use-pacakge but does not work
-(keyboard-translate ?\C-h ?\C-?)
+;(keyboard-translate ?\C-h ?\C-?)
+(global-set-key "\C-ch" 'help-command) ; C-c h
 
 (el-get-bundle emacs-helm/helm)
 
