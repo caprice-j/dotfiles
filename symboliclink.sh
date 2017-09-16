@@ -7,6 +7,8 @@ TGT_TMUX_FILE=~/.tmux.conf
 TGT_TMUXINATOR1=~/.tmuxinator/research.yml
 TGT_TMUXINATOR2=~/.tmuxinator/skt.yml
 
+TGT_XMODMAP=~/.Xmodmap
+
 DOTFILES=~/dotfiles
 
 
@@ -23,3 +25,6 @@ ln -fs  ${DOTFILES}/tmux.conf   ${TGT_TMUX_FILE}
 # mux start res
 ln -fs  ${DOTFILES}/skt.yml          ${TGT_TMUXINATOR2}
 ln -fs  ${DOTFILES}/research.yml     ${TGT_TMUXINATOR1}
+
+# MAYBE: I need to add xmodmap ~/.Xmodmap in .bashrc?
+ln -fs  ${DOTFILES}/Xmodmap     ${TGT_XMODMAP}

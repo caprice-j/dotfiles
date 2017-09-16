@@ -1,17 +1,56 @@
 
+; does not create files starting from # marks
+(setq create-lockfiles nil)
+
+(defun my-window-resizer ()
+  "Control window size and position."
+  (interactive)
+  (let ((window-obj (selected-window))
+        (current-width (window-width))
+        (current-height (window-height))
+        (dx (if (= (nth 0 (window-edges)) 0) 1
+              -1))
+        (dy (if (= (nth 1 (window-edges)) 0) 1
+              -1))
+        action c)
+    (catch 'end-flag
+      (while t
+        (setq action
+              (read-key-sequence-vector (format "size[%dx%d]"
+                                                (window-width)
+                                                (window-height))))
+        (setq c (aref action 0))
+        (cond ((= c ?l)
+               (enlarge-window-horizontally dx))
+              ((= c ?h)
+               (shrink-window-horizontally dx))
+              ((= c ?j)
+               (enlarge-window dy))
+              ((= c ?k)
+               (shrink-window dy))
+              ;; otherwise
+              (t
+               (let ((last-command-char (aref action 0))
+                     (command (key-binding action)))
+                 (when command
+                   (call-interactively command)))
+               (message "Quit")
+               (throw 'end-flag t)))))))
+
+
 ; (add-to-list 'load-path "~/.emacs.d")
 
 ; for japanese
-(if (eq system-type 'gnu/linux) 
-  (
-    (require 'mozc)
-    (set-language-environment "Japanese")
-    (setq default-input-method "japanese-mozc")
-    (global-set-key (kbd "C-]") 'toggle-input-method)
-  )
+;; (if (eq system-type 'gnu/linux) 
+;;   (
+;;     (require 'mozc)
+;;     (set-language-environment "Japanese")
+;;     (setq default-input-method "japanese-mozc")
+;;     (global-set-key (kbd "C-]") 'toggle-input-method)
+;;   )
 
-)
-(prefer-coding-system 'utf-8)
+;; )
+;; (prefer-coding-system 'utf-8)
 
 ; #026afe : purple
 
@@ -49,14 +88,25 @@
     (eval-print-last-sexp)))
 
 ;  packages
+(el-get-bundle yaml-mode)
+
 (el-get-bundle anzu)
 (global-anzu-mode +1)
 (custom-set-variables
- '(anzu-mode-lighter "")
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(anzu-deactivate-region t)
- '(anzu-search-threshold 1000)
+ '(anzu-mode-lighter "")
  '(anzu-replace-threshold 50)
- '(anzu-replace-to-string-separator " => "))
+ '(anzu-replace-to-string-separator " => ")
+ '(anzu-search-threshold 1000)
+ '(git-gutter:added-sign "+ ")
+ '(git-gutter:deleted-sign "- ")
+ '(git-gutter:modified-sign "  ")
+ '(git-gutter:window-width 2)
+ '(rtags-use-helm t))
 
 ; multi-term is a powerful terminal emulator.
 ; 1. It does not use C-z, C-x, C-c, C-h, C-y, and ESC.
@@ -105,11 +155,7 @@
 (global-git-gutter-mode +1)
 ;(global-linum-mode)
 ;(setq git-gutter-fr:side 'right-fringe)
-(custom-set-variables
- '(git-gutter:window-width 2)
- '(git-gutter:modified-sign "  ") ;; two spac
- '(git-gutter:added-sign "+ ")    ;; multiple character is OK
- '(git-gutter:deleted-sign "- "));
+;
 ;(set-face-foreground 'git-gutter:unchanged "yellow")
 ;(set-face-background 'git-gutter:modified "purple") ;; background color;
 ;(set-face-foreground 'git-gutter:added "green")
@@ -121,7 +167,8 @@
 ;(el-get-bundle jwiegley/use-package)
 ; stronger than (global-set-key).
 ; I wanna use use-pacakge but does not work
-(keyboard-translate ?\C-h ?\C-?)
+;(keyboard-translate ?\C-h ?\C-?)
+(global-set-key "\C-ch" 'help-command) ; C-c h
 
 (el-get-bundle emacs-helm/helm)
 
@@ -188,22 +235,29 @@
 ;(load-theme 'charcoal-black t t)
 ;(enable-theme 'charcoal-black)
 
+;(load-theme 'tty-dark t t)
+;(enable-theme 'tty-dark)
+
 ; replace unusable buffer-switch
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 ; MAYBE-LATER: installing rtags is hard
  (el-get-bundle rtags)
+
+(define-prefix-command 'rtags-original-prefix)
+(global-set-key (kbd "M-r") 'rtags-original-prefix)
+
 (el-get-bundle jixiuf/helm-etags-plus)
-(custom-set-variables '(rtags-use-helm t))
-(global-set-key (kbd "M-t") 'rtags-symbol-type)  ;  show type information on variables in minibuffer
-(global-set-key (kbd "M-i") 'rtags-symbol-info)  ;  show type information on variablse in a separate buffer
-(global-set-key (kbd "M-l") 'rtags-taglist)      ;  create a buffer of list all variables/functions 
-(global-set-key (kbd "M-d") 'rtags-print-dependencies) ; show all include files. powerful!
-(global-set-key (kbd "M-c") 'rtags-print-class-hierarchy) ; on subclass names?
-(global-set-key (kbd "M-t") 'rtags-find-symbol)        ; go back to definition. 
-(global-set-key (kbd "M-b") 'rtags-location-stack-bak) ; back for M-t
-(global-set-key (kbd "M-s") 'rtags-display-summary) ; back    ; go back to definition. 
+
+(global-set-key (kbd "M-r t") 'rtags-symbol-type)  ;  show type information on variables in minibuffer
+(global-set-key (kbd "M-r i") 'rtags-symbol-info)  ;  show type information on variablse in a separate buffer
+(global-set-key (kbd "M-r l") 'rtags-taglist)      ;  create a buffer of list all variables/functions 
+(global-set-key (kbd "M-r d") 'rtags-print-dependencies) ; show all include files. powerful!
+(global-set-key (kbd "M-r c") 'rtags-print-class-hierarchy) ; on subclass names?
+(global-set-key (kbd "M-r f") 'rtags-find-symbol)        ; go back to definition. 
+(global-set-key (kbd "M-r b") 'rtags-location-stack-back) ; back for M-t
+(global-set-key (kbd "M-r s") 'rtags-display-summary) ; back    ; go back to definition. 
 ;(global-set-key (kbd "M-r") 'rtags-references-tree)       ; show usage points
-(global-set-key (kbd "M-r") 'rtags-find-references)       ; show usage points
+(global-set-key (kbd "M-r r") 'rtags-find-references)       ; show usage points
 (global-set-key [f12] 'eval-buffer)                       ; on buffer of init.el, reload
 (global-set-key [f11] 'describe-bindings)                 ; all key bindings
 
@@ -252,7 +306,20 @@
 (global-set-key (kbd "C-M-g") 'keyboard-escape-quit)
 
 (global-hl-line-mode t) ; highlight the current line
-(custom-set-faces '(hl-line ((t (:background "black"))))) 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(comint-highlight-prompt ((t (:inherit nil :foreground "color-33"))))
+ '(font-lock-comment-delimiter-face ((t (:inherit nil :foreground "color-243"))))
+ '(font-lock-comment-face ((t (:foreground "color-243"))))
+ '(font-lock-constant-face ((t (:foreground "brightcyan"))))
+ '(font-lock-doc-face ((t (:inherit nil :foreground "brightmagenta"))))
+ '(font-lock-function-name-face ((t (:foreground "color-39"))))
+ '(font-lock-preprocessor-face ((t (:inherit nil :foreground "brightred"))))
+ '(hl-line ((t (:background "black")))))
+ 
 ;(setq hl-line-face 'underline) ; 下線
 ;; highlight current line
 ;(el-get-bundle jaspace)

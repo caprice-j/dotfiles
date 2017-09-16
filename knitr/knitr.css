@@ -164,7 +164,7 @@ h3:before {
   background-color: #EEE;
   border: 1px solid #BBB;
   border-radius: 14px;
-  background-image:  url('/Users/PCUser/dotfiles/knitr/ip/adobe-pdf-logo.png');
+  background-image:  url('ip/adobe-pdf-logo.png');
   background-repeat: no-repeat;
   background-size:  contain;  /* cover; */    /* for fitting */
   background-position: left center;
